@@ -12,13 +12,13 @@ class DetailedPagerAdapter (fm: FragmentManager, val id: Int): FragmentPagerAdap
         bunddle.putInt("id", id)
         return when (position) {
             0-> {
-                DetailedFragmentOne().apply { bunddle }
+                DetailedFragmentOne().apply { arguments = bunddle }
             }
             1-> {
-                DetailedFragmentTwo()
+                DetailedFragmentTwo().apply { arguments = bunddle }
             }
             else -> {
-                return DetailedFragmentOne()
+                return DetailedFragmentOne().apply { arguments = bunddle }
             }
         }
     }

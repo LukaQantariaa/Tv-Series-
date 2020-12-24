@@ -22,12 +22,10 @@ class MainActivity : AppCompatActivity() {
         //View Model
         val mainViewModel = MainViewModel()
 
-        Toast.makeText(this, "it.movies.size", Toast.LENGTH_SHORT).show()
-
         mainViewModel.moviesLiveData.observe(
             this,
             Observer {
-                Toast.makeText(this, it.movies.size, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, it.movies.size, Toast.LENGTH_SHORT).show()
                 listView.adapter = MoviesAdapter(this, R.layout.movies_row, it.movies)
             }
         )

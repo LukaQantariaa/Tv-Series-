@@ -20,6 +20,10 @@ class MainViewModel: ViewModel() {
     val moviesLiveData: LiveData<MoviesM>
         get() = _moviesLiveData
 
+    private val _movieDetailedLiveData = MutableLiveData<MoviesModel>()
+    val movieDetailedLiveData: LiveData<MoviesModel>
+        get() = _movieDetailedLiveData
+
 
 //    https://my-json-server.typicode.com/
 
@@ -57,30 +61,30 @@ class MainViewModel: ViewModel() {
         })
     }
 
-//    fun getMovie(index: Int) {
-//        moviesService.getMovies().enqueue(object : Callback<MoviesM> {
-//
-//            override fun onResponse(call: Call<MoviesM>, response: Response<MoviesM>) {
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        for (i in it.movies.indices) {
-//                            if(it.movies[i].id == index) {
-//                                _movieDetailedLiveData.postValue(it.movies[i]);
-//                                // for loop-ის გაჩერება ვერ ვნახე თუ როგორ არის. აქ უნდა ჩამესვა.
-//                            }
-//                        }
-//                    }
-//                } else {
-////                    _errorLiveData.postValue("Error Occurred")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MoviesM>, t: Throwable) {
-//
-//            }
-//
-//        })
-//    }
+    fun getMovie(index: Int) {
+        moviesService.getMovies().enqueue(object : Callback<MoviesM> {
+
+            override fun onResponse(call: Call<MoviesM>, response: Response<MoviesM>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        for (i in it.movies.indices) {
+                            if(it.movies[i].id == index) {
+                                _movieDetailedLiveData.postValue(it.movies[i]);
+                                // for loop-ის გაჩერება ვერ ვნახე თუ როგორ არის. აქ უნდა ჩამესვა.
+                            }
+                        }
+                    }
+                } else {
+//                    _errorLiveData.postValue("Error Occurred")
+                }
+            }
+
+            override fun onFailure(call: Call<MoviesM>, t: Throwable) {
+
+            }
+
+        })
+    }
 
 
 
